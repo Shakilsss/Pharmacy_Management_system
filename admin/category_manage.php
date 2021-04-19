@@ -15,7 +15,7 @@ if(isset($_GET['logout']))
 
 
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql= "select* from category";
+$sql= "select* from categories";
 $manage_category=mysqli_query($conn,$sql);
 
 if(isset($_GET['unpublished_id'])){

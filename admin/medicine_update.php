@@ -14,7 +14,7 @@ if(isset($_GET['logout']))
 }
 
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql= "select* from medicine";
+$sql= "select* from medicines";
 $manage_medicine=mysqli_query($conn,$sql);
 
 
@@ -27,19 +27,19 @@ if(isset($_POST['btn']))
 
 extract($_GET);
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql="select* from medicine where id='$id'";
+$sql="select* from medicines where id='$id'";
 $result=mysqli_query($conn, $sql);
 $getData=mysqli_fetch_assoc($result);
 
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql='select* from category';
+$sql='select* from categories';
 $get_category=mysqli_query($conn,$sql);
 
-$sql2='select* from unit';
+$sql2='select* from units';
 $get_unit=mysqli_query($conn,$sql2);
 
-$sql3='select* from manufacturer';
+$sql3='select* from manufacturers';
 $get_manufacturer=mysqli_query($conn,$sql3);
 
 

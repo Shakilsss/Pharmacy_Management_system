@@ -14,7 +14,7 @@ if(isset($_GET['logout']))
 }
 extract($_GET);
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql="select* from customer where id='$id'";
+$sql="select* from customers where id='$id'";
 $result=mysqli_query($conn, $sql);
 $getData=mysqli_fetch_assoc($result);
 

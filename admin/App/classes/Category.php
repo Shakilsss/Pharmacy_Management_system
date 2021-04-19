@@ -7,7 +7,7 @@ class Category extends Connection{
 	public function addCategory(){
 		extract($_POST);
 		
-		$sql_check="select* from category where name='$name'";
+		$sql_check="select* from categories where name='$name'";
 		$result=mysqli_query($this->conn,$sql_check) or die(mysqli_error($this->conn));
 		// $check=mysqli_fetc($result);
 		if(mysqli_num_rows($result)>0){
@@ -16,7 +16,7 @@ class Category extends Connection{
      	 echo '<script>alert("Category Already Added")</script>';
 		}
 		else{
-		$sql="insert into category (name,status) values ('$name','$status')";	
+		$sql="insert into categories (name,status) values ('$name','$status')";	
 		$result=mysqli_query($this->conn,$sql);
 		if($result){
       	echo '<script>alert("Category Added Successfully")</script>';
@@ -29,7 +29,7 @@ class Category extends Connection{
 
 	public function unpublishedCategory($unpublished_id){
 		extract($_GET);
-		$sql="update category set status='0' where id='$unpublished_id'";
+		$sql="update categories set status='0' where id='$unpublished_id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{
@@ -42,7 +42,7 @@ class Category extends Connection{
 
 		public function publishedCategory($published_id){
 		extract($_GET);
-		$sql="update category set status='1' where id='$published_id'";
+		$sql="update categories set status='1' where id='$published_id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{
@@ -57,7 +57,7 @@ class Category extends Connection{
 	public function update()
 		{
 		extract($_POST);
-		$sql="update category set name='$name', status='$status' where id='$id'";
+		$sql="update categories set name='$name', status='$status' where id='$id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{
@@ -73,7 +73,7 @@ class Category extends Connection{
 
 		public function deleteCategory($id){
 		extract($_GET);
-		$sql="delete from category where id='$id'";
+		$sql="delete from categories where id='$id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{

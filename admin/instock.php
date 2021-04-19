@@ -13,7 +13,7 @@ if(isset($_GET['logout']))
 }
 
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql= "select* from medicine where quantity > '1'";
+$sql= "select* from medicines where quantity > '1'";
 $manage_medicine=mysqli_query($conn,$sql);
 
 ?>

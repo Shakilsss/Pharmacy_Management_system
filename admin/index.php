@@ -15,16 +15,16 @@ if(isset($_GET['logout']))
 
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$out_of_stock="select* from medicine where quantity ='0'";
+$out_of_stock="select* from medicines where quantity ='0'";
 $result=mysqli_query($conn,$out_of_stock);
 
-$stock="select* from medicine where quantity > '1'";
+$stock="select* from medicines where quantity > '1'";
 $in_stock=mysqli_query($conn,$stock);
 
-$sql="select* from medicine";
+$sql="select* from medicines";
 $medicine=mysqli_query($conn,$sql);
 
-$sql= "select* from medicine where expired_date < NOW()";
+$sql= "select* from medicines where expired_date < NOW()";
 $expired_date=mysqli_query($conn,$sql);
 
 ?>

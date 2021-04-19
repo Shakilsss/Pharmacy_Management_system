@@ -7,7 +7,7 @@ class Unit extends Connection{
 	public function addUnit(){
 		extract($_POST);
 		
-		$sql_check="select* from unit where name='$name'";
+		$sql_check="select* from units where name='$name'";
 		$result=mysqli_query($this->conn,$sql_check) or die(mysqli_error($this->conn));
 		// $check=mysqli_fetc($result);
 		if(mysqli_num_rows($result)>0){
@@ -17,7 +17,7 @@ class Unit extends Connection{
      	 echo '<script>alert("Unit Already Added")</script>';
 		}
 		else{
-		$sql="insert into unit (name,status) values ('$name','$status')";	
+		$sql="insert into units (name,status) values ('$name','$status')";	
 		$result=mysqli_query($this->conn,$sql);
 		if($result){
       	echo '<script>alert("Unit Added Successfully")</script>';
@@ -31,7 +31,7 @@ class Unit extends Connection{
 
 	public function unpublishedUnit($unpublished_id){
 		extract($_GET);
-		$sql="update unit set status='0' where id='$unpublished_id'";
+		$sql="update units set status='0' where id='$unpublished_id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{
@@ -44,7 +44,7 @@ class Unit extends Connection{
 
 		public function publishedUnit($published_id){
 		extract($_GET);
-		$sql="update unit set status='1' where id='$published_id'";
+		$sql="update units set status='1' where id='$published_id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{
@@ -58,7 +58,7 @@ class Unit extends Connection{
 	public function update()
 		{
 		extract($_POST);
-		$sql="update unit set name='$name', status='$status' where id='$id'";
+		$sql="update units set name='$name', status='$status' where id='$id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{
@@ -75,7 +75,7 @@ class Unit extends Connection{
 
 		public function deleteUnit($id){
 		extract($_GET);
-		$sql="delete from unit where id='$id'";
+		$sql="delete from units where id='$id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{   

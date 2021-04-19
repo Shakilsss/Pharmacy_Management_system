@@ -23,7 +23,7 @@ if(isset($_POST['btn']))
 
 extract($_GET);
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql="select* from manufacturer where id='$id'";
+$sql="select* from manufacturers where id='$id'";
 $result=mysqli_query($conn, $sql);
 $getData=mysqli_fetch_assoc($result);
 

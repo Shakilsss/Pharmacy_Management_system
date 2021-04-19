@@ -19,7 +19,7 @@ if(isset($_GET['delete']))
 }
 
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql= "select* from manufacturer";
+$sql= "select* from manufacturers";
 $manage_manufacturer=mysqli_query($conn,$sql);
 
 

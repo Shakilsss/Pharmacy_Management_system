@@ -13,7 +13,7 @@ if(isset($_GET['logout']))
 }
 
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql= "select* from medicine where expired_date < NOW()";
+$sql= "select* from medicines where expired_date < NOW()";
 $expired_date=mysqli_query($conn,$sql);
 
 ?>

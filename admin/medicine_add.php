@@ -22,13 +22,13 @@ if(isset($_POST['btn']))
 
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql="select* from category where status='1'";
+$sql="select* from categories where status='1'";
 $get_category=mysqli_query($conn,$sql);
 
-$sql2="select* from unit where status='1'";
+$sql2="select* from units where status='1'";
 $get_unit=mysqli_query($conn,$sql2);
 
-$sql3='select* from manufacturer';
+$sql3='select* from manufacturers';
 $get_manufacturer=mysqli_query($conn,$sql3);
 
 

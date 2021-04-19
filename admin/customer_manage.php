@@ -16,7 +16,7 @@ if(isset($_GET['logout']))
 
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql="select* from customer";
+$sql="select* from customers";
 $result=mysqli_query($conn,$sql);
 
 ?>
