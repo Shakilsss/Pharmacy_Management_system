@@ -30,7 +30,7 @@
                                                 <td><?php echo $get['manufacturer']?></td>
                                                 <td><?php echo $get['manufacturer_price']?></td>
                                                 <td><?php echo $get['price']?></td>
-                                                <td><?php echo $get['quantity']?></td>
+                                                <td style="color: red"><?php echo $get['quantity']?></td>
                                                 <td><?php echo $get['expired_date']?></td>
 
 </tr>

@@ -5,7 +5,7 @@ class Adduser extends Connection{
 
 	public function adduser(){
 		extract($_POST);
-		$sql= "insert into user (name,email,phone,password) values ('$name','$email','$phone','$email')";
+		$sql= "insert into users (name,email,phone,password) values ('$name','$email','$phone','$email')";
 		$adduser=mysqli_query($this->conn,$sql);
 		if($adduser){
         

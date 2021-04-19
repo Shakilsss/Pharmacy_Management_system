@@ -24,19 +24,19 @@
     <div class="row mb-3">
       <div class="col-lg-5">
         <label >Category</label>
-        <select class="form-control" style="height: 35px" name="category">
+        <select class="form-control" style="height: 35px" name="category_id">
         <option>Choose Category</option>
         <?php while($category=mysqli_fetch_assoc($get_category)){?>
-        <option ><?php echo $category['name'];?></option>
+        <option value="<?php echo $category['id'];?>"><?php echo $category['name'];?></option>
         <?php }?>
       </select>
       </div>
       <div class="col-lg-5">
         <label for="uname">Unit</label>
-        <select class="form-control" style="height: 35px" name="unit">
+        <select class="form-control" style="height: 35px" name="unit_id">
         <option >Choose Unit</option>
        <?php while($unit=mysqli_fetch_assoc($get_unit)){?>
-        <option ><?php echo $unit['name'];?></option>
+        <option value="<?php echo $unit['id'];?>" ><?php echo $unit['name'];?></option>
         <?php }?>
       </select>
       </div>

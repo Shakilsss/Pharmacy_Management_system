@@ -2,7 +2,8 @@
 session_start();
 include 'vendor/autoload.php';
 use App\classes\Logout;
-use App\classes\Medicine;
+use App\classes\Customer;
+
 if($_SESSION['id'] == NULL){
     header('Location:/project/admin/pages/login.php');
 }
@@ -11,39 +12,25 @@ if(isset($_GET['logout']))
     $logout= new Logout();
     $logout->logout();
 }
-
+extract($_GET);
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql="SELECT medicine.name, medicine.category_id FROM 
-     ((medicine INNER JOIN category ON category.id= medicine.category_id) 
-                INNER JOIN unit ON unit.id=medicine.unit_id )";
-$manage_medicine=mysqli_query($conn,$sql);
+$sql="select* from customer where id='$id'";
+$result=mysqli_query($conn, $sql);
+$getData=mysqli_fetch_assoc($result);
 
-
-if(isset($_GET['unpublished_id'])){
-    $unpublished= new Medicine();
-    $unpublished->unpublishedMedicine($_GET['unpublished_id']);
-
-}
-
-if(isset($_GET['published_id'])){
-    $published= new Medicine();
-    $published->publishedMedicine($_GET['published_id']);
-}
-
-
-
-
-if(isset($_GET['delete']))
+if(isset($_POST['btn']))
 {
-    $delete= new Medicine();
-    $delete->deleteMedicine($_GET['id']);
+    $update= new Customer();
+    $update->update();
 }
 
 
 ?>
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head><title>Manage Medicine</title>
+<head><title>Customer Update</title>
     <?php include'includes/head.php';?> 
 </head>
 <body> 
@@ -55,19 +42,19 @@ if(isset($_GET['delete']))
              <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Manage Medicine</h4>
+                        <h4 class="page-title">Customer Update</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Manage Medicine</li>
+                                    <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Update Customer</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
             </div>
-<div class="container-fluid"><?php include 'pages/medicine/manage_medicine.php';?></div><?php include 'includes/footer.php';?> </div></div>
+<div class="container-fluid"><?php include 'pages/customer/update.php';?></div><?php include 'includes/footer.php';?> </div></div>
 
 <?php include 'includes/js.php'?>
 </body>

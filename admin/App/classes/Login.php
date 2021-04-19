@@ -5,7 +5,7 @@ class Login extends Connection{
 
 public function adminLogin(){
 extract($_POST);
-$sql="select* from admin where email='$email' && password='$password'";
+$sql="select* from users where email='$email' && password='$password'";
 $getAdminEP=mysqli_query($this->conn,$sql);
 
 if($getAdminEP)

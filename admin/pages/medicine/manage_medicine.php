@@ -30,11 +30,11 @@
                                                 <td><?php echo $i++?></td>
                                                 
                                                 <td><?php echo $get['name']?></td>
-                                                <td><?php echo $get['category']?></td>
+                                                <td><?php echo $get['category_id']?></td>
                                                 <td><?php echo $get['manufacturer']?></td>
                                                 <td><?php echo $get['strength']?></td>
                                                 <td><?php echo $get['shelf']?></td>
-                                                <td><?php echo $get['quantity']?></td>
+                                                <td <?php echo $get['quantity']==0? "style='color:red' ": "style='color:black'" ?>><?php echo $get['quantity']?></td>
                                                 <td><?php echo $get['manufacturer_price']?></td>
                                                 <td><?php echo $get['price']?></td>
                                                 <td><?php echo $get['expired_date']?></td>
