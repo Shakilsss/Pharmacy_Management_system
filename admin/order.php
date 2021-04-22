@@ -17,6 +17,12 @@ $conn=mysqli_connect('localhost','root','','pharma');
 $medicine= "select* from medicines where status='1' and expired_date> NOW() and quantity>'0' ";
 $get_medicine=mysqli_query($conn,$medicine);
 
+extract($_POST);
+$sql="select* from customers where id='$id'";
+$result=mysqli_query($conn, $sql);
+$getData=mysqli_fetch_assoc($result);
+
+
 
 if(isset($_POST['save']))  
 {  
@@ -27,25 +33,18 @@ $city=$_POST['city'];
 $zip=$_POST['zip'];  
 mysqli_query($conn,"insert into customer_orders(name,phone,address,city,zip) VALUES ('$name','$phone','$address','$city','$zip')");  
 $id=mysqli_insert_id($conn);  
-
 for($i = 0; $i<count($_POST['medicine_name']); $i++)  
 {  
-$sql="INSERT INTO orders  
+mysqli_query($conn,"INSERT INTO orders  
 SET   
 customer_id = '{$id}',  
 medicine_name = '{$_POST['medicine_name'][$i]}',  
 qty = '{$_POST['qty'][$i]}',  
-price = '{$_POST['price'][$i]}',  
-total = '{$_POST['total'][$i]}'";  
-
-$a=mysqli_query($conn,$sql); 
-
-}
-
-if($a){
-
+price= '{$_POST['price'][$i]}',  
+totals = '{$_POST['totals'][$i]}'
+");   
 } 
-else die('error'.mysqli_error($conn));
+
 }
 
 ?>
@@ -99,7 +98,7 @@ else die('error'.mysqli_error($conn));
  <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Customer Name</label> -->
-          <input type="text" name="name" id="name" class="form-control" placeholder='Customer Name' value="">
+          <input type="text" name="name" id="name" class="form-control" placeholder='Customer Name' value="<?php echo $getData['name']?>">
         </div>
       </div>
 
@@ -157,7 +156,7 @@ else die('error'.mysqli_error($conn));
             <!-- <td><input type="text" name='medicine'  placeholder='Enter Product Name' class="form-control"/></td> -->
             
 <td>  
-<select id="medicine" class="form-control" style="height: 35px" name="medicine_name[]">
+<select id="medicine" class="form-control" style="height: 35px" name="medicine_name[]" onChange="getDetails();" value="">
         <option>Choose Medicine</option>
         <?php while($get_all_medicine=mysqli_fetch_assoc($get_medicine)){?>
         <option><?php echo $get_all_medicine['names'].'('.$get_all_medicine['strength'].')'?></option>

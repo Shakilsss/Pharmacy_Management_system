@@ -6,7 +6,7 @@
       </div>
       <div class="col-lg-5">
         <label for="uname">Medicine Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Medicine Name" name="name" required>
+        <input type="text" class="form-control" id="name" placeholder="Medicine Name" name="names" required>
       </div>
     </div>
 

@@ -11,6 +11,12 @@
                                 <li class="sidebar-item"><a style="text-decoration: none"  href="customer_add.php" class="sidebar-link"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu"> Add Customer</span></a></li>
                                 <li class="sidebar-item"><a style="text-decoration: none" href="customer_manage.php" class="sidebar-link"><i class="mdi mdi-account-edit"></i><span class="hide-menu">Manage Customer</span></a></li>
                             </ul>
+                        </li> 
+                        <li class="sidebar-item"> <a style="text-decoration: none" class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Sells</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level ">
+                                <li class="sidebar-item"><a style="text-decoration: none"  href="invoice.php" class="sidebar-link"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Sell Medicines</span></a></li>
+                                <li class="sidebar-item"><a style="text-decoration: none" href="sell_list.php" class="sidebar-link"><i class="mdi mdi-account-edit"></i><span class="hide-menu">Sells List</span></a></li>
+                            </ul>
                         </li>                         
                         <li class="sidebar-item"> <a style="text-decoration: none" class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-list-alt"></i><span class="hide-menu">Manufacturer</span></a>
                             <ul aria-expanded="false" class="collapse  first-level ">

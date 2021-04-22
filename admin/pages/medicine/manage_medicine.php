@@ -29,8 +29,8 @@
                                             <tr>
                                                 <td><?php echo $i++?></td>
                                                 
+                                                <td><?php echo $get['names']?></td>
                                                 <td><?php echo $get['name']?></td>
-                                                <td><?php echo $get['category_id']?></td>
                                                 <td><?php echo $get['manufacturer']?></td>
                                                 <td><?php echo $get['strength']?></td>
                                                 <td><?php echo $get['shelf']?></td>

@@ -7,7 +7,7 @@
       </div>
       <div class="col-lg-5">
         <label for="uname">Medicine Name</label>
-        <input type="text" class="form-control" id="name" value="<?php echo $getData['name']?>" name="name">
+        <input type="text" class="form-control" id="name" value="<?php echo $getData['names']?>" name="name">
       </div>
     </div>
 

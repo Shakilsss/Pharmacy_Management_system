@@ -1,6 +1,6 @@
 <?php  
 $cn=mysqli_connect('localhost','root','','pharma'); 
-$medicine= "select* from medicine";
+$medicine= "select* from medicines";
 $get_medicine=mysqli_query($cn,$medicine);
 
  
@@ -239,19 +239,19 @@ amount = '{$_POST['amount'][$i]}'");
 <script type="text/javascript">  
 
 $(document).ready(function(){
-    // var i=1;
-    // $("#add_row").click(function(){b=i-1;
-    //     $('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
-    //     $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-    //     i++; 
-    // });
-    // $("#delete_row").click(function(){
-    //     if(i>1){
-    //     $("#addr"+(i-1)).html('');
-    //     i--;
-    //     }
-    //     calc();
-    // });
+    var i=1;
+    $("#add_row").click(function(){b=i-1;
+        $('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
+        $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+        i++; 
+    });
+    $("#delete_row").click(function(){
+        if(i>1){
+        $("#addr"+(i-1)).html('');
+        i--;
+        }
+        calc();
+    });
     
     $('#tab_logic tbody').on('keyup change',function(){
         calc();

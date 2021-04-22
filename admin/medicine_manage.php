@@ -13,7 +13,9 @@ if(isset($_GET['logout']))
 }
 
 $conn=mysqli_connect('localhost','root','','pharma');
-$sql="SELECT* from medicines";
+$sql=" SELECT medicines.*, categories.name
+FROM medicines
+INNER JOIN categories ON medicines.category_id= categories.id";
 $manage_medicine=mysqli_query($conn,$sql);
 
 

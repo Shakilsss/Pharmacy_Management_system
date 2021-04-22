@@ -27,8 +27,12 @@
                               <td><?php echo $get['city']?></td>
                               <td><?php echo $get['zip']?></td>
                               <td>
-<a href="customer_update.php?update&&id=<?php echo $get['id']?>" class="btn btn-info ml-2 btn-sm">Edit</a>
-<a href="?delete=true&&id=<?php echo $get['id']?>" onclick="return confirm('Are Your Sure to Delete!!!')" class="btn btn-danger btn-sm">Delete</a>
+<a href="customer_update.php?update&&id=<?php echo $get['id']?>" class="btn btn-info ml-2 btn-sm"><i class="fas fa-edit"></i></a>
+<a href="?delete=true&&id=<?php echo $get['id']?>" onclick="return confirm('Are Your Sure to Delete!!!')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+
+<a href="orderlist.php?delete=true&&id=<?php echo $get['id']?>" title="Order List"  class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
+
+<a href="order.php?order&&id=<?php echo $get['id']?>" title="Order Now"  class="btn btn-primary btn-sm"><i class="fas fa-file-medical"></i></a>
                                                   </td>
                                               </tr> <?php }?>
                                       </tbody>
