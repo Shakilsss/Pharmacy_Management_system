@@ -21,7 +21,7 @@ $result=mysqli_query($conn,$out_of_stock);
 $stock="select* from medicines where quantity > '1'";
 $in_stock=mysqli_query($conn,$stock);
 
-$sql="select* from medicines";
+$sql="select* from medicines where  quantity>1";
 $medicine=mysqli_query($conn,$sql);
 
 $sql= "select* from medicines where expired_date < NOW()";
@@ -57,7 +57,16 @@ $expired_date=mysqli_query($conn,$sql);
                     </div>
                 </div>
             </div>
-<div class="container-fluid"><?php include 'layouts/dashboard.php';?></div><?php include 'includes/footer.php';?> </div></div>
+<div class="container-fluid">
+
+
+
+    <?php include 'layouts/dashboard.php';?>
+        
+
+
+
+    </div><?php include 'includes/footer.php';?> </div></div>
 
 <?php include 'includes/js.php'?>
 </body>

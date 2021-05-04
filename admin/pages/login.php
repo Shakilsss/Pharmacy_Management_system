@@ -89,7 +89,7 @@ body {
                         </div>
 
                         <div class="form-group" align="center">
-                            <input type="submit" class="btnSubmit btn" name="btn" value="Register"  />
+                            <input type="submit" class="btnSubmit btn" name="btn" value="Sign In"  />
                         </div>
                        
                     </form>

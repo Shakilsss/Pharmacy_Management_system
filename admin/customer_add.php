@@ -47,7 +47,13 @@ if(isset($_POST['btn']))
                     </div>
                 </div>
             </div>
-<div class="container-fluid"><?php include 'pages/customer/customer_add.php';?></div><?php include 'includes/footer.php';?> </div></div>
+<div class="container-fluid">
+
+    <?php include 'pages/customer/customer_add.php';?>
+        
+
+        
+    </div><?php include 'includes/footer.php';?> </div></div>
 
 <?php include 'includes/js.php'?>
 </body>

@@ -7,7 +7,7 @@ class Medicine extends Connection{
 	public function addMedicine(){
 		extract($_POST);
 		
-		$sql_check="select* from medicines where name='$names'";
+		$sql_check="select* from medicines where names='$names'";
 		$result=mysqli_query($this->conn,$sql_check) or die(mysqli_error($this->conn));
 		// $check=mysqli_fetc($result);
 		if(mysqli_num_rows($result)>0){
@@ -59,7 +59,7 @@ $sql="insert into medicines (names,code,category_id,unit_id,manufacturer,strengt
 	public function update()
 		{
 		extract($_POST);
-		$sql="update medicines set names='$names',code='$code',category_id='$category_id',unit_id='$unit_id',manufacturer='$manufacturer',strength='$strength',shelf='$shelf',expired_date='$expired_date',quantity='$quantity',description='$description',manufacturer_price='$manufacturer_price',price='$price',status='$status' where id='$id'";
+		$sql="update medicines set names='$name',code='$code',category_id='$category_id',unit_id='$unit_id',manufacturer='$manufacturer',strength='$strength',shelf='$shelf',expired_date='$expired_date',quantity='$quantity',description='$description',manufacturer_price='$manufacturer_price',price='$price',status='$status' where id='$id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{

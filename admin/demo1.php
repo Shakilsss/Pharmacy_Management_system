@@ -14,8 +14,8 @@ if(isset($_GET['logout']))
 
 
 $conn=mysqli_connect('localhost','root','','pharma');
-// $medicine= "select* from medicines where status='1' and expired_date> NOW() and quantity>'0' ";
-// $get_medicine=mysqli_query($conn,$medicine);
+$medicine= "select* from medicines where status='1' and expired_date> NOW() and quantity>'0' ";
+$get_medicine=mysqli_query($conn,$medicine);
 
 
 if(isset($_POST['save']))  
@@ -155,52 +155,52 @@ else die('error'.mysqli_error($conn));
         </thead>
         <tbody>
           <tr id='addr0'>
-            <td>1</td>  
-          <td>  
+            <td>1</td>
+            <!-- <td><input type="text" name='medicine'  placeholder='Enter Product Name' class="form-control"/></td> -->
+  
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<?php
-$conn=mysqli_connect('localhost','root','','pharma');
-$query = "SELECT * FROM medicines";
-$countryResult = mysqli_query($conn,$query);
-?>
-
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"
-    type="text/javascript"></script>
 <script>
-function getState() {
+
+function medi() {
         var str='';
-        var val=document.getElementById('country-list');
+        var val=document.getElementById('medicine');
         for (i=0;i< val.length;i++) { 
             if(val[i].selected){
                 str += val[i].value + ','; 
             }
         }         
-        // var str=str.slice(0,str.length -1);
+        var str=str.slice(0,str.length -1);
         
   $.ajax({          
           type: "GET",
-          url: "get_state.php",
-          data:'country_id=',
+          url: "infomedicine.php",
+          data:'medicine='+str,
           success: function(data){
-            $("#quantity").text(data);
-            // $("#expired_date").val(data);
-          }
+            $("#quantity").val($(this).val(data);
+          
   });
 }
+
+
+
+
 </script>
+ -->
 
 
 
 
-<select  id="country-list" class="form-control" style="height: 35px" name="medicine_name[]"  onChange="getState($this.value);">
+<td>  
+<select id="medicine" class="form-control" style="height: 35px" name="medicine_name[]">
         <option>Choose Medicine</option>
-        <?php while($get_all_medicine=mysqli_fetch_assoc($countryResult)){?>
+        <?php while($get_all_medicine=mysqli_fetch_assoc($get_medicine)){?>
         <option><?php echo $get_all_medicine['names'].'('.$get_all_medicine['strength'].')'?></option>
          <?php }?>   
-</select> 
+      </select> 
 </td>
-<td><input id="quantity" value="" type="number" name='quantity[]'  placeholder="0" class="form-control" readonly/></td>
+<td><input id="quantity" type="number" name='quantity[]'  placeholder="0" class="form-control" readonly/></td>
 <td><input type="date" name='expired_date[]'  class="form-control" readonly/></td>
 <td><input type="number" name='qty[]' placeholder='Quantiy' class="form-control qty" step="0" min="0"/></td>
 <td><input type="number" name='price[]' placeholder='Price' class="form-control price" step="0.00" min="0"/></td>

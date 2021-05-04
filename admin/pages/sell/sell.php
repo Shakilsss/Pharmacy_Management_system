@@ -151,10 +151,10 @@ zip = '{$_POST['zip'][$i]}'");
           if (this.readyState == 4 && this.status == 200) {
             
             var myObj = JSON.parse(this.responseText);
-            document.getElementById("medicine").value = myObj[0];
-            document.getElementById("quantity").value = myObj[1];
-            document.getElementById("expired_date").value = myObj[2];
-            document.getElementById("unit").value = myObj[3];
+            // document.getElementById("medicine").value = myObj[0];
+            document.getElementById("quantity").value = myObj[0];
+            document.getElementById("expired_date").value = myObj[1];
+            document.getElementById("unit").value = myObj[2];
           }
         };
 
@@ -304,7 +304,7 @@ function calc_total()
         $('#tbody').append(`<tr id="R${++rowIdx}">
             <td class="row-index text-center"><p>${rowIdx}</p></td>
   <td>
-  <input class="form-control" style="height: 35px" name="name[]" id="medicine" onChange="GetDetails(this.value)">
+  <input class="form-control" style="height: 35px" name="names[]" id="medicine" onChange="GetDetails(this.value)">
 
   </td>
   

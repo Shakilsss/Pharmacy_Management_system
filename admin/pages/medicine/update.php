@@ -25,19 +25,19 @@
         <div class="row mb-3">
       <div class="col-lg-5">
         <label >Category</label>
-        <select class="form-control" style="height: 35px" name="category">
+        <select class="form-control" style="height: 35px" name="category_id">
         <option>Choose Category</option>
         <?php while($category=mysqli_fetch_assoc($get_category)){?>
-        <option <?php echo $getData['category']==$category['name'] ? 'SELECTED':''?>><?php echo $category['name'];?></option>
+        <option value="<?php echo $getData['category_id']?>" <?php echo $getData['category_id']==$category['id'] ? 'SELECTED':''?> ><?php echo $category['name'];?></option>
         <?php }?>
       </select>
       </div>
       <div class="col-lg-5">
         <label for="uname">Unit</label>
-        <select class="form-control" style="height: 35px" name="unit">
+        <select class="form-control" style="height: 35px" name="unit_id">
         <option >Choose Unit</option>
        <?php while($unit=mysqli_fetch_assoc($get_unit)){?>
-        <option <?php echo $getData['unit']==$unit['name'] ? 'SELECTED':''?>><?php echo $unit['name'];?></option>
+        <option value="<?php echo $getData['category_id']?>" <?php echo $getData['unit_id']==$unit['id'] ? 'SELECTED':''?>><?php echo $unit['name'];?></option>
         <?php }?>
       </select>
       </div>

@@ -26,7 +26,7 @@
                                             <tr>
                                                 <td><?php echo $i++?></td>
                                                 
-                                                <td><?php echo $get['name']?></td>
+                                                <td><?php echo $get['names']?></td>
                                                 <td><?php echo $get['manufacturer']?></td>
                                                 <td><?php echo $get['manufacturer_price']?></td>
                                                 <td><?php echo $get['price']?></td>

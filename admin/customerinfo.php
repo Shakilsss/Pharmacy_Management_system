@@ -6,11 +6,11 @@ $user_id = $_REQUEST['user_id'];
 // Database connection
 $con = mysqli_connect("localhost", "root", "", "pharma");
 
-if ($user_id !== "") {
+if ($user_id !="") {
 	
 	// Get corresponding first name and
 	// last name for that user id	
-	$query = mysqli_query($con, "SELECT* FROM customers WHERE name like '%$user_id%'|| phone like '%$user_id%'");
+	$query = mysqli_query($con, "SELECT* FROM customers WHERE name like '%$user_id%'|| phone = '$user_id'");
 
 	$row = mysqli_fetch_array($query);
 
@@ -23,6 +23,8 @@ if ($user_id !== "") {
 	$city = $row["city"];
 	$zip = $row["zip"];
 }
+
+// else echo '<script>alert("Customer not found")</script>';
 
 // Store it in a array
 $result = array("$name", "$phone","$address","$city","$zip");
