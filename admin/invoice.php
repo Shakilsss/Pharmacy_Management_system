@@ -38,16 +38,11 @@ qty = '{$_POST['qty'][$i]}',
 price = '{$_POST['price'][$i]}',  
 total = '{$_POST['total'][$i]}'";  
 
-$a=mysqli_query($conn,$sql); 
+mysqli_query($conn,$sql); 
 
 }
 
-if($a){
-
-} 
-else die('error'.mysqli_error($conn));
 }
-
 ?>
 
 
@@ -57,8 +52,11 @@ else die('error'.mysqli_error($conn));
 <html dir="ltr" lang="en">
 <head><title>Sell Medicine</title>
 <link href="assets/css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 </head>
 <body> 
 <?php include 'includes/loader.php';?>  
@@ -81,7 +79,8 @@ else die('error'.mysqli_error($conn));
                 </div>
             </div>
 <div class="container-fluid">
-
+<div class="card">
+<div class="card-body">  
 
  <form method="POST" >    
 
@@ -135,107 +134,54 @@ else die('error'.mysqli_error($conn));
       </div>
     </div>
 
-
-
-
-<div class="card">
-  <div class="row clearfix">
-    <div class="col-md-12">
-      <table class="table table-bordered table-hover" id="tab_logic">
-        <thead>
-          <tr>
-            <th class="text-center"> # </th>
-            <th class="text-center"> Medicine Name </th>
-            <th class="text-center"> Quantity </th>
-            <th class="text-center"> Expired Date </th>
-            <th class="text-center"> Quantity </th>
-            <th class="text-center"> Price </th>
-            <th class="text-center"> Total </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id='addr0'>
-            <td>1</td>  
-          <td>  
-
-
-<?php
-$conn=mysqli_connect('localhost','root','','pharma');
-$query = "SELECT * FROM medicines";
-$countryResult = mysqli_query($conn,$query);
-?>
-
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"
-    type="text/javascript"></script>
-<script>
-function getState() {
-        var str='';
-        var val=document.getElementById('country-list');
-        for (i=0;i< val.length;i++) { 
-            if(val[i].selected){
-                str += val[i].value + ','; 
-            }
-        }         
-        // var str=str.slice(0,str.length -1);
-        
-  $.ajax({          
-          type: "GET",
-          url: "get_state.php",
-          data:'country_id=',
-          success: function(data){
-            $("#quantity").text(data);
-            // $("#expired_date").val(data);
-          }
-  });
-}
-</script>
-
-
-
-
-<select  id="country-list" class="form-control" style="height: 35px" name="medicine_name[]"  onChange="getState($this.value);">
-        <option>Choose Medicine</option>
-        <?php while($get_all_medicine=mysqli_fetch_assoc($countryResult)){?>
-        <option><?php echo $get_all_medicine['names'].'('.$get_all_medicine['strength'].')'?></option>
-         <?php }?>   
-</select> 
-</td>
-<td><input id="quantity" value="" type="number" name='quantity[]'  placeholder="0" class="form-control" readonly/></td>
-<td><input type="date" name='expired_date[]'  class="form-control" readonly/></td>
-<td><input type="number" name='qty[]' placeholder='Quantiy' class="form-control qty" step="0" min="0"/></td>
-<td><input type="number" name='price[]' placeholder='Price' class="form-control price" step="0.00" min="0"/></td>
-<td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
-</tr>
-
-<tr id='addr1' ></tr>
-  </tbody>
-</table>
-</div>
 </div>
 
 
-  <div class="row clearfix">
-    <div class="col-md-4 ">  
-      <table class="table table-bordered table-hover" id="tab_logic_total">
-        <tbody>
-          <tr>
-            <th class="text-center">Total</th>
-            <td class="text-center"><input type="number" name='totals[]' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
-            <td><button  class="btn btn-info pull-left" name="save">Submit</button></td>
-          </tr>
 
-        </tbody>
-      </table>
+
+
+  <table border='1' style='border-collapse: collapse;' id="tbUser">
+            <thead>
+            <tr>
+                <th>Medicine Name</th>
+                <th>Available</th>
+                <th>Expired Date</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class='tr_input'>
+                <td><input type='text'  class='medicine' id='medicine_1' ></td>
+                <td><input type='text' readonly class='quantity' id='quantity_1' ></td>
+                <td><input type='text' readonly class='expired_date' id='expired_date_1' ></td>
+                <td><input type='text' readonly class='qty' id='qty' ></td>
+                <td><input type='text' readonly class='price' id='price' ></td>
+                <td><input type='text' readonly class='total' id='total' ></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
-  </div>
+
+
+
+
 </div>
+</div>
+
+
+</div>
+
+
+
+
+
 </form>
-  <div class="row clearfix">
-    <div class="col-md-12 mb-1">
-      <button id="add_row" class="btn btn-info pull-left">+</button>
-      <button id='delete_row' class="pull-right btn btn-danger"><i class="fas fa-trash"></i></button>
-    </div>
-  </div>
+
 
 </div>
 </div>
@@ -283,63 +229,7 @@ function getState() {
   </script>
 
 
-        
-<script type="text/javascript">
-    $(document).ready(function(){
-    var i=1;
-    $("#add_row").click(function(){b=i-1;
-        $('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
-        $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-        i++; 
-    });
-    $("#delete_row").click(function(){
-        if(i>1){
-        $("#addr"+(i-1)).html('');
-        i--;
-        }
-        calc();
-    });
-    
-    $('#tab_logic tbody').on('keyup change',function(){
-        calc();
-    });
-    $('#tax').on('keyup change',function(){
-        calc_total();
-    });
-    
-
-});
-
-function calc()
-{
-    $('#tab_logic tbody tr').each(function(i, element) {
-        var html = $(this).html();
-        if(html!='')
-        {
-            var qty = $(this).find('.qty').val();
-            var price = $(this).find('.price').val();
-            $(this).find('.total').val(qty*price);
-            
-            calc_total();
-        }
-    });
-}
-
-function calc_total()
-{
-    total=0;
-    $('.total').each(function() {
-        total += parseInt($(this).val());
-    });
-    $('#sub_total').val(total.toFixed(2));
-    tax_sum=(total/100)*$('#tax1').val();
-    $('#tax_amount').val(tax_sum.toFixed(2));
-    $('#total_amount').val((tax_sum+total).toFixed(2));
-}
-</script>
-
-
-
+ 
 
 
 </div>

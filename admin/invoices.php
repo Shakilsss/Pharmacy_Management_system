@@ -1,83 +1,22 @@
-<?php
-session_start();
-include 'vendor/autoload.php';
-use App\classes\Logout;
+<!doctype html>
+<html>
+<head>
+<title>How</title>
 
-if($_SESSION['id'] == NULL){
-    header('Location:/project/admin/pages/login.php');
-}
-if(isset($_GET['logout']))
-{
-    $logout= new Logout();
-    $logout->logout();
-}
-
-
-
-?>
-
-
-
-
-<!DOCTYPE html>
-<html dir="ltr" lang="en">
-<head><title>Admin Dashboard</title>
-    <?php include'includes/head.php';?> 
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" >
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/> 
 <link href='jquery-ui.min.css' type='text/css' rel='stylesheet' >
 <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="jquery-ui.min.js" type="text/javascript"></script>
 
-<script>
-
-    // onkeyup event will occur when the user
-    // release the key and calls the function
-    // assigned to this event
-    function GetDetail(str) {
-      if (str.length == 0) {
-        document.getElementById("name").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("address").value = "";
-        document.getElementById("city").value = "";
-        document.getElementById("zip").value = "";
-        return;
-      }
-      else {
-
-        // Creates a new XMLHttpRequest object
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-
-          // Defines a function to be called when
-          // the readyState property changes
-          if (this.readyState == 4 && this.status == 200) {
-            
-            var myObj = JSON.parse(this.responseText);
-            document.getElementById("name").value = myObj[0];
-            document.getElementById("phone").value = myObj[1];
-            document.getElementById("address").value = myObj[2];
-            document.getElementById("city").value = myObj[3];
-            document.getElementById("zip").value = myObj[4];
-          }
-        };
-
-        // xhttp.open("GET", "filename", true);
-        xmlhttp.open("GET", "customerinfo.php?user_id=" + str, true);
-        
-        // Sends the request to the server
-        xmlhttp.send();
-      }
-    }
-  </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
-      <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function(){
-            
+			
    
-            $("#tbUser").on('click', '.btnDelete', function () {
+			$("#tbUser").on('click', '.btnDelete', function () {
     $(this).closest('tr').remove();
-}); 
+});	
             $(document).on('keydown', '.medicine', function() {
                 
                 var id = this.id;
@@ -143,14 +82,14 @@ if(isset($_GET['logout']))
 
                 // Create row with input elements
 var html = "<tr class='tr_input'>"
-            +"<td><input  type='text' class='medicine' id='medicine_"+index+"' ></td>"
-            +"<td><input readonly type='text' class='quantity' id='quantity_"+index+"' ></td>"
-            +"<td><input readonly type='text' class='expired_date' id='expired_date_"+index+"' ></td>"
-            +"<td><input  readonly type='text' class='qty' id='qty'></td>"
-            +"<td><input readonly type='text' class='price' id='price'></td>"
-            +"<td><input readonly type='text' class='total' id='total'></td>"
-            +"<td><button class='btnDelete btn-danger btn btn-sm'><i class='fas fa-trash'></i></button></td>"
-            +"</tr>";
+			+"<td><input  type='text' class='medicine' id='medicine_"+index+"' ></td>"
+			+"<td><input readonly type='text' class='quantity' id='quantity_"+index+"' ></td>"
+			+"<td><input readonly type='text' class='expired_date' id='expired_date_"+index+"' ></td>"
+			+"<td><input  readonly type='text' class='qty' id='qty'></td>"
+			+"<td><input readonly type='text' class='price' id='price'></td>"
+			+"<td><input readonly type='text' class='total' id='total'></td>"
+			+"<td><button class='btnDelete btn-danger btn btn-sm'><i class='fas fa-trash'></i></button></td>"
+			+"</tr>";
 
                 // Append data
                 $('tbody').append(html);
@@ -159,31 +98,57 @@ var html = "<tr class='tr_input'>"
         });
 
     </script>
+
+<script>
+
+    // onkeyup event will occur when the user
+    // release the key and calls the function
+    // assigned to this event
+    function GetDetail(str) {
+      if (str.length == 0) {
+        document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("city").value = "";
+        document.getElementById("zip").value = "";
+        return;
+      }
+      else {
+
+        // Creates a new XMLHttpRequest object
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+
+          // Defines a function to be called when
+          // the readyState property changes
+          if (this.readyState == 4 && this.status == 200) {
+            
+            var myObj = JSON.parse(this.responseText);
+            document.getElementById("name").value = myObj[0];
+            document.getElementById("phone").value = myObj[1];
+            document.getElementById("address").value = myObj[2];
+            document.getElementById("city").value = myObj[3];
+            document.getElementById("zip").value = myObj[4];
+          }
+        };
+
+        // xhttp.open("GET", "filename", true);
+        xmlhttp.open("GET", "customerinfo.php?user_id=" + str, true);
+        
+        // Sends the request to the server
+        xmlhttp.send();
+      }
+    }
+  </script>
 </head>
-<body> 
-<?php include 'includes/loader.php';?>  
-    <div id="main-wrapper">    
-<?php include 'includes/header.php'; ?>    
-<?php include 'includes/aside.php';?>
-        <div class="page-wrapper">
-             <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Dashboard</h4>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item active" aria-current="page">Dasboard</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<div class="container-fluid">
+<body >
+
+<div class="container-fluide">
+
 
 <div class="card">
 <div class="card-body">  
+
 
  <form method="POST" >    
 
@@ -238,7 +203,9 @@ var html = "<tr class='tr_input'>"
     </div>
 
 
-<table border='1' style='border-collapse: collapse;' id="tbUser">
+
+
+        <table border='1' style='border-collapse: collapse;' id="tbUser" class="table border">
             <thead>
             <tr>
                 <th>Medicine Name</th>
@@ -262,15 +229,20 @@ var html = "<tr class='tr_input'>"
             </tr>
             </tbody>
         </table>
-        <br>
+
+
+
+<div >
+<span class="form-control "  style="border: 1px solid black; width: 20%;float: right;" class="table">Total Price</span>
+</div>
+
+        <input type='submit' value='Submit' class="btn btn-info btn-sm" >
+        <input type='button' value='Back to Dashboard' class="btn btn-info btn-sm" >
         <input type='button' value='+' class="btn btn-info btn-sm" id='addmore'>
 
 
-
-
-
-
-
+</div>
+</div>
 
 
 
@@ -279,32 +251,6 @@ var html = "<tr class='tr_input'>"
 
 </form>
 
-  
-        
-
-
-
-
-
-
-</div>
-</div></div>
-
-
-<?php include 'includes/footer.php';?> </div></div>
-
-
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-
-    <script src="assets/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="assets/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="assets/js/custom.min.js"></script>
-
 </body>
 </html>
+
