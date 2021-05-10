@@ -8,7 +8,7 @@
                               <thead>
                                     <?php $i=1;?>
                                           <tr>
-                                              <th>Sl No.</th>
+                                              <th>Sl</th>
                                               <th>Name</th>
                                               <th>Email</th>
                                               <th>Phone</th>

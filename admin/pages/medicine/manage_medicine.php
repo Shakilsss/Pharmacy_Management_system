@@ -37,9 +37,8 @@
                                                 <td <?php echo $get['quantity']==0? "style='color:red' ": "style='color:black'" ?>><?php echo $get['quantity']?></td>
                                                 <td><?php echo $get['manufacturer_price']?></td>
                                                 <td><?php echo $get['price']?></td>
-                                                <td><?php echo $get['expired_date']?></td>
-                                                <td >
-
+                                                <td <?php echo $get['expired_date']> Date("Y-M-D")? "style='color:black' ": "style='color:red'" ?>><?php echo $get['expired_date']?></td>
+<td>
 <?php if($get['status']==1){
 echo '<a href="?unpublished_id='.$get['id'].'">'.'<button type="button" class="btn btn-success 
 btn-sm "><i class="fas fa-arrow-up"></i> Published</button></a> ';

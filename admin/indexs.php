@@ -1,22 +1,24 @@
 <!doctype html>
 <html>
 <head>
-<title>How</title>
+    <title>How to autocomplete data on multiple fields with jQuery and AJAX</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" >
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/> 
-<link href='jquery-ui.min.css' type='text/css' rel='stylesheet' >
-<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="jquery-ui.min.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">   
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href='jquery-ui.min.css' type='text/css' rel='stylesheet' >
+    <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="jquery-ui.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function(){
-			
-   
 			$("#tbUser").on('click', '.btnDelete', function () {
     $(this).closest('tr').remove();
 });	
+
+
+
             $(document).on('keydown', '.medicine', function() {
                 
                 var id = this.id;
@@ -54,7 +56,6 @@
                                 if(len > 0){
                                     var id = response[0]['id'];
                                     var quantity = response[0]['quantity'];
-                                   
                                     var expired_date = response[0]['expired_date'];
 
                                     document.getElementById('quantity_'+index).value = quantity;
@@ -81,16 +82,15 @@
                 var index = Number(split_id[1]) + 1;
 
                 // Create row with input elements
-var html = "<tr class='tr_input'>"
-			+"<td><input  type='text' class='medicine' id='medicine_"+index+"' ></td>"
-			+"<td><input readonly type='text' class='quantity' id='quantity_"+index+"' ></td>"
-			+"<td><input readonly type='text' class='expired_date' id='expired_date_"+index+"' ></td>"
-			+"<td><input  readonly type='text' class='qty' id='qty'"+index"></td>"
-			+"<td><input readonly type='text' class='price' id='price'"+index"></td>"
-			+"<td><input readonly type='text' class='total' id='total'"+index"></td>"
-			+"<td><button class='btnDelete btn-danger btn btn-sm'><i class='fas fa-trash'></i></button>"+index"</td>"
-			+"</tr>";
-
+                var html = "<tr class='tr_input'>"
+				+"<td><input type='text' class='medicine' id='medicine_"+index+"'>"
+				+"</td><td><input type='text' class='quantity' id='quantity_"+index+"' ></td>"
+				+"<td><input type='text' class='expired_date' id='expired_date_"+index+"' ></td>"
+				+"<td><input type='text' class='qty' id='qty_"+index+"' ></td>"
+				+"<td><input type='text' class='price' id='price_"+index+"' ></td>"
+				+"<td><input type='text' class='total' id='total_"+index+"' ></td>"
+				+"<td><button class='btnDelete btn-danger btn btn-sm'><i class='fas fa-trash'></i></button></td>"
+				+"</tr>";
                 // Append data
                 $('tbody').append(html);
                 
@@ -98,8 +98,7 @@ var html = "<tr class='tr_input'>"
         });
 
     </script>
-
-<script>
+	<script>
 
     // onkeyup event will occur when the user
     // release the key and calls the function
@@ -141,24 +140,15 @@ var html = "<tr class='tr_input'>"
     }
   </script>
 </head>
-<body >
-
-<div class="container-fluide">
-
-
-<div class="card">
-<div class="card-body">  
-
-
- <form method="POST" >    
-
-
-
+<body>
+    <div class="container ">
+	
+<form>	
 <div class="row">
       <div class="col-lg-4">
         <div class="form-group">
           <label>Customer Phone or Name</label>
-          <input type='text'  id='user_id' class='form-control' placeholder='Customer Name/Phone Number' onkeyup="GetDetail(this.value)" value="">
+          <input type='text'  id='user_id' class='form-control form-control form-control-sm' placeholder='Customer Name/Phone Number' onkeyup="GetDetail(this.value)" value="">
         </div>
       </div>
     </div>
@@ -166,7 +156,7 @@ var html = "<tr class='tr_input'>"
  <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Customer Name</label> -->
-          <input type="text" name="name" id="name" class="form-control" placeholder='Customer Name' value="">
+          <input type="text" name="name" id="name" class="form-control form-control form-control-sm" placeholder='Customer Name' value="">
         </div>
       </div>
 
@@ -174,7 +164,7 @@ var html = "<tr class='tr_input'>"
       <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Phone</label> -->
-          <input type="text" name="phone" id="phone" class="form-control" placeholder='Phone Number' value="">
+          <input type="text" name="phone" id="phone" class="form-control form-control form-control-sm" placeholder='Phone Number' value="">
         </div>
       </div>
      
@@ -184,28 +174,26 @@ var html = "<tr class='tr_input'>"
       <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Address</label> -->
-          <input type="text" name="address" id="address" class="form-control" placeholder='Address' value="">
+          <input type="text" name="address" id="address" class="form-control form-control-sm" placeholder='Address' value="">
         </div>
       </div>
       <div class="col-lg-3">
         <div class="form-group">
           <!-- <label>City</label> -->
-          <input type="text" name="city" id="city" class="form-control"  placeholder='City' value="">
+          <input type="text" name="city" id="city" class="form-control form-control form-control-sm"  placeholder='City' value="">
         </div>
       </div>
 
        <div class="col-lg-1">
         <div class="form-group">
           <!-- <label>Zip</label> -->
-          <input type="text" name="zip" id="zip" class="form-control" placeholder='zip' value="">
+          <input type="text" name="zip" id="zip" class="form-control form-control form-control-sm" placeholder='zip' value="">
         </div>
       </div>
     </div>
 
-
-
-
-        <table border='1' style='border-collapse: collapse;' id="tbUser" class="table border">
+        
+        <table border='1' id="tbUser" class=" table-striped" style="padding:0px">
             <thead>
             <tr>
                 <th>Medicine Name</th>
@@ -219,38 +207,36 @@ var html = "<tr class='tr_input'>"
             </thead>
             <tbody>
             <tr class='tr_input'>
-                <td><input type='text'  class='medicine' id='medicine_1' ></td>
-                <td><input type='text' readonly class='quantity' id='quantity_1' ></td>
-                <td><input type='text' readonly class='expired_date' id='expired_date_1' ></td>
-                <td><input type='text' readonly class='qty' id='qty' ></td>
-                <td><input type='text' readonly class='price' id='price' ></td>
-                <td><input type='text' readonly class='total' id='total' ></td>
-                <td></td>
+                <td><input type='text' class='medicine form-control form-control-sm' id='medicine_1'></td>
+                <td><input type='text' class='quantity form-control form-control-sm' id='quantity_1' ></td>
+                <td><input type='text' class='expired_date form-control form-control-sm' id='expired_date_1' ></td>
+                <td><input type='text' class='qty form-control form-control-sm' id='qty_1' ></td>
+                <td><input type='text' class='price form-control form-control-sm' id='price_1' ></td>
+				<td><input type='text' class='total form-control form-control-sm' id='toral_1' ></td>
+             <td></td>
             </tr>
             </tbody>
         </table>
-
-
-
-<div >
-<span class="form-control "  style="border: 1px solid black; width: 20%;float: right;" class="table">Total Price</span>
-</div>
-
-        <input type='submit' value='Submit' class="btn btn-info btn-sm" >
-        <input type='button' value='Back to Dashboard' class="btn btn-info btn-sm" >
-        <input type='button' value='+' class="btn btn-info btn-sm" id='addmore'>
-
-
-</div>
-</div>
-
-
-
-
-
-
-</form>
-
+		
+		<br>
+		<input type='button' value='Submit' class="btn btn-sm btn-success" >
+	    <button type="reset" value="Reset All"  class="btn btn-sm btn-warning"><i class="fas fa-redo-alt"></i> Reset All</button>
+	
+		<br>
+		
+</form>		
+		
+        <br>
+        <input type='button' value='+ Add' class="btn btn-sm btn-info" id='addmore'>
+ 
+    </div>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
 

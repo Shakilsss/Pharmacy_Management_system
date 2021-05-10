@@ -31,7 +31,7 @@
                                                 <td><?php echo $get['manufacturer_price']?></td>
                                                 <td><?php echo $get['price']?></td>
                                                 <td><?php echo $get['quantity']?></td>
-                                                <td><?php echo $get['expired_date']?></td>
+                                                <td <?php echo $get['expired_date']> Date("Y-M-D")? "style='color:black' ": "style='color:red'" ?>><?php echo $get['expired_date']?></td>
 
 </tr>
 <?php }?>

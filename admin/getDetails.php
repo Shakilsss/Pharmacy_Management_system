@@ -7,7 +7,7 @@ $request = $_POST['request'];   // request
 if($request == 1){
     $search = $_POST['search'];
 
-    $query = "SELECT * FROM medicines WHERE names like'%".$search."%'";
+    $query = "SELECT * FROM medicines WHERE names like'%".$search."%' && expired_date > NOW()";
     $result = mysqli_query($con,$query);
     
     while($row = mysqli_fetch_array($result) ){
@@ -33,7 +33,7 @@ if($request == 2){
         $quantity = $row['quantity'];
         $expired_date = $row['expired_date'];
 
-        $users_arr[] = array("id" => $userid, "quantity" => $quantity, "expired_date" =>$expired_date);
+        $users_arr[] = array("id" => $userid,"quantity" =>$quantity, "expired_date" =>$expired_date);
     }
 
     // encoding array to json format
