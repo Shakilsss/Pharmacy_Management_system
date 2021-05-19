@@ -32,9 +32,9 @@ if($request == 2){
         $userid = $row['id'];
         $quantity = $row['quantity'];
         $expired_date = $row['expired_date'];
-        // $price = $row['price'];
+        $price = $row['price'];
 
-        $users_arr[] = array("id" => $userid,"quantity" =>$quantity, "expired_date" =>$expired_date);
+        $users_arr[] = array("id" => $userid,"quantity" =>$quantity, "expired_date" =>$expired_date, "price" =>$price);
     }
 
     // encoding array to json format
