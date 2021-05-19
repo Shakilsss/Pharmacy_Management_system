@@ -32,6 +32,14 @@ $sql3='select* from manufacturers';
 $get_manufacturer=mysqli_query($conn,$sql3);
 
 
+ $s="SELECT code from medicines ORDER BY id DESC LIMIT 1";
+$g=mysqli_query($conn,$s)or die(mysqli_error($conn));
+      if (mysqli_num_rows($g) > 0) {
+   $max_public_id = mysqli_fetch_row($g);
+
+}
+
+
 ?>
 
 

@@ -13,11 +13,22 @@ if(isset($_GET['logout']))
     $logout->logout();
 }
 
+if(isset($_GET['delete']))
+{
+    $delete= new Customer();
+    $delete->deleteCustomer($_GET['id']);
+}
+
+
 
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql="select* from customers";
+
+
+$sql="SELECT* FROM customers";
+
 $result=mysqli_query($conn,$sql);
+// $result=mysqli_query($conn,$sql2);
 
 ?>
 

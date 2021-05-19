@@ -12,10 +12,28 @@ if(isset($_GET['logout']))
     $logout->logout();
 }
 
+if(isset($_GET['delete']))
+{  
 
-// $conn=mysqli_connect('localhost','root','','pharma');
-// $medicine= "select* from medicines";
-// $get_medicine=mysqli_query($conn,$medicine);
+$conn=mysqli_connect('localhost','root','','pharma');
+
+    extract($_GET);
+   $sql="delete from customer_orders where id='$id'";
+   $x=mysqli_query($conn,$sql);
+   if($x){
+    echo '<script>alert("Delete Successfully")</script>';
+    echo '<script>location.replace("/project/admin/sell_list.php")</script>';
+
+   }
+}
+
+
+$conn=mysqli_connect('localhost','root','','pharma');
+
+$sql="  SELECT customer_orders.* ,orders.customer_id,orders.total
+FROM customer_orders
+INNER JOIN orders ON customer_orders.id= orders.customer_id ";
+$result=mysqli_query($conn, $sql);
 
 ?>
 
@@ -24,16 +42,8 @@ if(isset($_GET['logout']))
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head><title>Sell Medicine</title>
-<link href="assets/css/style.min.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>  
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
-  
+<head><title>Sell Medicines</title>
+    <?php include'includes/head.php';?> 
 </head>
 <body> 
 <?php include 'includes/loader.php';?>  
@@ -48,14 +58,23 @@ if(isset($_GET['logout']))
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item active" aria-current="page">Dasboard</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Sell Medicine</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
             </div>
-<div class="container-fluid"><?php include 'pages/sell/sell.php';?></div><?php include 'includes/footer.php';?> </div></div>
+<div class="container-fluid">
+
+
+
+    <?php include 'pages/sell/sell.php';?>
+        
+
+
+
+    </div><?php include 'includes/footer.php';?> </div></div>
 
 <?php include 'includes/js.php'?>
 </body>

@@ -12,7 +12,7 @@
 
     <div class="row mb-3">
       <div class="col-lg-5">
-       <label >Address</label> <input type="text" required class="form-control" id="address" placeholder="Strength" name="address"  >
+       <label >Address</label> <input type="text" required class="form-control" id="address" placeholder="Address" name="address"  >
       </div>
       <div class="col-lg-5">
         <label>City</label>

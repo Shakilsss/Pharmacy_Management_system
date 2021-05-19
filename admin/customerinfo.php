@@ -15,11 +15,14 @@ if ($user_id !="") {
 	$row = mysqli_fetch_array($query);
 
 	// Get the first name
+	
 	$name = $row["name"];
 
 	// Get the first name
 	$phone = $row["phone"];
+		$id = $row["id"];
 	$address = $row["address"];
+
 	$city = $row["city"];
 	$zip = $row["zip"];
 }
@@ -27,7 +30,7 @@ if ($user_id !="") {
 // else echo '<script>alert("Customer not found")</script>';
 
 // Store it in a array
-$result = array("$name", "$phone","$address","$city","$zip");
+$result = array("$name", "$phone","$id","$address","$city","$zip");
 
 // Send in JSON encoded form
 $myJSON = json_encode($result);

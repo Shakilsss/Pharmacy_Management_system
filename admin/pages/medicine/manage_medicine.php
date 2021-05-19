@@ -1,4 +1,4 @@
-<div class="row d-block">
+<div class="row">
 <div class="col-12">                      
  <div class="card">
 
@@ -20,6 +20,7 @@
                                                 <th>Manufacturer_Price</th>
                                                 <th>Price</th>
                                                 <th>Expired_Date</th>
+                                                <th>Import_Date_and_Time</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -38,6 +39,8 @@
                                                 <td><?php echo $get['manufacturer_price']?></td>
                                                 <td><?php echo $get['price']?></td>
                                                 <td <?php echo $get['expired_date']> Date("Y-M-D")? "style='color:black' ": "style='color:red'" ?>><?php echo $get['expired_date']?></td>
+                                                <td><?php echo $get['time'];?></td>
+
 <td>
 <?php if($get['status']==1){
 echo '<a href="?unpublished_id='.$get['id'].'">'.'<button type="button" class="btn btn-success 
@@ -55,13 +58,13 @@ btn-sm "><i class="fas fa-arrow-down"></i> Unpublished</button></a>';}?>
 <?php }?>
 </tbody>
 
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
             
 
 

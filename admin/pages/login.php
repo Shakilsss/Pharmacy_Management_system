@@ -24,38 +24,6 @@ if(isset($_POST['btn']))
 
 <style type="text/css">
     
-    .login-container{
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-.login-form-2{
-
-    padding: 5%;
-    background: #0062cc;
-    box-shadow: 0px 0px 5px white;
-               
-              
-    /*border-radius: 10px;*/
-}
-.login-form-2 h3{
-    text-align: center;
-    color: #fff;
-}
-.login-container form{
-    padding: 5%;
-}
-
-.login-form-2 .btnSubmit{
-    font-weight: 600;
-    color: #0062cc;
-    background-color: #fff;
-}
-.login-form-2{
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-}
 
 body {
   background-image: url('../bc.jpg');
@@ -76,31 +44,50 @@ body {
   <body >
 
 <div class="container login-container">
-            <div class="row justify-content-center">
-         
-                <div  class="col-6 login-form-2">
-                    <h3>Login Admin</h3>
-                    <form style="margin-bottom: -53px;" action="" method="POST">
-                        <div class="form-group w-100">
-                        <input type="email" id="email" class="form-control" placeholder="Enter Email" name="email" />
-                        </div>
-                    <div class="form-group w-100 ">
-            <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
-                        </div>
 
-                        <div class="form-group" align="center">
-                            <input type="submit" class="btnSubmit btn" name="btn" value="Sign In"  />
-                        </div>
-                       
-                    </form>
-                </div>
-            </div>
+<style>
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+    font-size: 15px;
+}
+.login-form form {
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.form-control, .btn {
+    min-height: 38px;
+    border-radius: 5px;
+}
+.btn {        
+    font-size: 15px;
+    font-weight: bold;
+}
+</style>
+<div class="login-form">
+    <form method="post">
+        <h2 class="text-center">Admin Login Form</h2>       
+        <div class="form-group">
+            <input type="email" id="email" class="form-control" placeholder="Enter Email" name="email"  required="required" />
         </div>
+        <div class="form-group">
+             <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required="required" />
+        </div>
+        <div class="form-group">
+             <input type="submit" class="btn btn-info border-rounded shadow" name="btn" value="Sign In"  />
+        </div>
+           
+    </form>
+    
+</div>
 
 
 
-
-   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 

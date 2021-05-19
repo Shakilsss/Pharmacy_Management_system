@@ -16,16 +16,24 @@ if(isset($_GET['logout']))
 $conn=mysqli_connect('localhost','root','','pharma');
 // $medicine= "select* from medicines where status='1' and expired_date> NOW() and quantity>'0' ";
 // $get_medicine=mysqli_query($conn,$medicine);
-
+     
+            $s="SELECT invoice_id from customer_orders ORDER BY id DESC LIMIT 1";
+            $g=mysqli_query($conn,$s)or die(mysqli_error($conn));
+      if (mysqli_num_rows($g) > 0) {
+   $max_public_id = mysqli_fetch_row($g);
+   //Here it is
+}
 
 if(isset($_POST['btn']))  
 {  
+
+$invoice_id = $_POST['invoice_id'];      
 $name=$_POST['name'];  
 $phone=$_POST['phone'];  
 $address=$_POST['address'];  
 $city=$_POST['city'];  
 $zip=$_POST['zip'];  
-mysqli_query($conn,"insert into customer_orders(name,phone,address,city,zip) VALUES ('$name','$phone','$address','$city','$zip')");  
+mysqli_query($conn,"insert into customer_orders(invoice_id,name,phone,address,city,zip,date) VALUES ('$invoice_id','$name','$phone','$address','$city','$zip',NOW())");  
 $id=mysqli_insert_id($conn);  
 
 for($i = 0; $i<count($_POST['medicine_name']); $i++)  
@@ -38,8 +46,32 @@ qty = '{$_POST['qty'][$i]}',
 price = '{$_POST['price'][$i]}',  
 total = '{$_POST['total'][$i]}'";  
 
-mysqli_query($conn,$sql); 
-// echo $sql;
+$done=mysqli_query($conn,$sql); 
+
+if($done){
+
+extract($_GET);
+$conn=mysqli_connect('localhost','root','','pharma');
+
+$sql="  SELECT customer_orders.* ,orders.customer_id,orders.medicine_name,orders.qty,orders.price,orders.total
+FROM customer_orders
+INNER JOIN orders ON customer_orders.id= orders.customer_id 
+where orders.customer_id IN($id)";
+$result=mysqli_query($conn, $sql);
+// $row=mysqli_fetch_assoc($result)
+
+$sqls="  SELECT customer_orders.* ,orders.customer_id,
+FROM customer_orders
+INNER JOIN orders ON customers.id= orders.customer_id 
+where orders.customer_id IN($id)";
+$results=mysqli_query($conn, $sql);
+$gets=mysqli_fetch_assoc($results);
+        // $id=mysqli_insert_id($_POST['customer_id']); 
+
+     echo '<script>alert("Order Successfully")</script>';
+    echo '<script>location.replace("/project/admin/orderlist.php?id='.$id.'")</script>';
+}
+
 }
 
 }
@@ -49,8 +81,18 @@ mysqli_query($conn,$sql);
 
 
 <!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+<!-- Custom CSS -->
 <html dir="ltr" lang="en">
 <head><title>Sell Medicine</title>
+
 <link href="assets/css/style.min.css" rel="stylesheet">
 
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">   -->
@@ -105,9 +147,11 @@ mysqli_query($conn,$sql);
                                     var id = response[0]['id'];
                                     var quantity = response[0]['quantity'];
                                     var expired_date = response[0]['expired_date'];
+                                    var price = response[0]['price'];
 
                                     document.getElementById('quantity_'+index).value = quantity;
                                     document.getElementById('expired_date_'+index).value = expired_date;
+                                    document.getElementById('price_'+index).value = price;
                                     
                                 }
                                 
@@ -155,6 +199,7 @@ mysqli_query($conn,$sql);
     // assigned to this event
     function GetDetail(str) {
       if (str.length == 0) {
+        document.getElementById("id").value = "";
         document.getElementById("name").value = "";
         document.getElementById("phone").value = "";
         document.getElementById("address").value = "";
@@ -175,9 +220,10 @@ mysqli_query($conn,$sql);
             var myObj = JSON.parse(this.responseText);
             document.getElementById("name").value = myObj[0];
             document.getElementById("phone").value = myObj[1];
-            document.getElementById("address").value = myObj[2];
-            document.getElementById("city").value = myObj[3];
-            document.getElementById("zip").value = myObj[4];
+            document.getElementById("id").value = myObj[2];
+            document.getElementById("address").value = myObj[3];
+            document.getElementById("city").value = myObj[4];
+            document.getElementById("zip").value = myObj[5];
           }
         };
 
@@ -219,16 +265,26 @@ mysqli_query($conn,$sql);
 <div class="row">
       <div class="col-lg-4">
         <div class="form-group">
-          <label>Customer Phone or Name</label>
+        
           <input type='text'  id='user_id' class='form-control ' placeholder='Customer Name/Phone Number' onkeyup="GetDetail(this.value)" value="">
         </div>
       </div>
+
+      <div class="col-lg-4">
+        <div class="form-group">
+
+          <input type='text'  id='invoice_id' class='form-control ' placeholder='Invoice No.'
+          value="<?php  echo @$max_public_id[0]+1; ?>" name="invoice_id">
+        </div>
+      </div>
+
     </div>
 <div class="row">
  <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Customer Name</label> -->
           <input type="text" name="name" id="name" class="form-control   " placeholder='Customer Name' value="">
+          <input type="hidden" name="id" id="id" class="form-control   " placeholder='id' value="">
         </div>
       </div>
 

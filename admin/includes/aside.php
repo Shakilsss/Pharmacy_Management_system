@@ -51,13 +51,20 @@
                                 <li class="sidebar-item"><a style="text-decoration: none"href="outofstock.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Out of Stock</span></a></li>
                                 <li class="sidebar-item"><a style="text-decoration: none"href="expireddate.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Date Expired</span></a></li>
                             </ul>
-                        </li>                                                              
-                        <li class="sidebar-item"> <a style="text-decoration: none"class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
+                        </li>
+                        <li class="sidebar-item"> <a style="text-decoration: none" class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-list-alt"></i><span class="hide-menu">Reports</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level ">
+                            <li class="sidebar-item"><a style="text-decoration: none"  href="salesreport.php" class="sidebar-link"><i class="fa fa-briefcase-medical"></i><span class="hide-menu"> Sales Report</span></a></li>
+                            <li class="sidebar-item"><a style="text-decoration: none" href="#" class="sidebar-link"><i class="mdi mdi-account-edit"></i><span class="hide-menu">Medicines Import Report</span></a></li>
+                             <li class="sidebar-item"><a style="text-decoration: none" href="#" class="sidebar-link"><i class="mdi mdi-account-edit"></i><span class="hide-menu">Medicines Export Reports</span></a></li>
+                            </ul>
+                        </li>                                                               
+                        <!-- <li class="sidebar-item"> <a style="text-decoration: none"class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a style="text-decoration: none"href="adduser.php" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Add User </span></a></li>
                                 <li class="sidebar-item"><a style="text-decoration: none"href="manageuser.php" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Manage User </span></a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                                        
                        
