@@ -30,9 +30,7 @@ $conn=mysqli_connect('localhost','root','','pharma');
 
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql="  SELECT customer_orders.* ,orders.customer_id,orders.total
-FROM customer_orders
-INNER JOIN orders ON customer_orders.id= orders.customer_id ";
+$sql="  SELECT customer_orders.* ,orders.customer_id, SUM(orders.total) as total FROM customer_orders INNER JOIN orders ON customer_orders.id= orders.customer_id GROUP by orders.customer_id ";
 $result=mysqli_query($conn, $sql);
 
 ?>

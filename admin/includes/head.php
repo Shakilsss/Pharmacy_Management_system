@@ -14,5 +14,5 @@
     <link rel="stylesheet" type="text/css" href="assets/libs/jquery-minicolors/jquery.minicolors.css">
     <link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="assets/libs/quill/dist/quill.snow.css">
-    <!-- <link href="assets/css/style.min.css" rel="stylesheet"> -->
+    <link href="assets/css/style.min.css" rel="stylesheet">
 

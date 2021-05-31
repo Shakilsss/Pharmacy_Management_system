@@ -20,14 +20,14 @@
                                                 <th>Manufacturer_Price</th>
                                                 <th>Price</th>
                                                 <th>Expired_Date</th>
-                                                <th>Import_Date_and_Time</th>
-                                                <th>Action</th>
+                                                <th>Import__date</th>
+                                                <th>Status_Edit_Delete</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                           <?php while($get=mysqli_fetch_assoc($manage_medicine)){?>
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td><?php echo $i++?></td>
                                                 
                                                 <td><?php echo $get['names']?></td>
@@ -43,16 +43,16 @@
 
 <td>
 <?php if($get['status']==1){
-echo '<a href="?unpublished_id='.$get['id'].'">'.'<button type="button" class="btn btn-success 
-btn-sm "><i class="fas fa-arrow-up"></i> Published</button></a> ';
+echo '<a href="?unpublished_id='.$get['id'].'">'.'<button type="button" title="Published" class="btn btn-success 
+btn-sm "><i class="fas fa-arrow-up"></i></button></a> ';
 }
 else{
-echo '<a href="?published_id='.$get['id'].'">'.'<button type="button" class="btn btn-warning
-btn-sm "><i class="fas fa-arrow-down"></i> Unpublished</button></a>';}?>
+echo '<a href="?published_id='.$get['id'].'">'.'<button type="button" title="Unpublished" class="btn btn-warning
+btn-sm "><i class="fas fa-arrow-down"></i></button></a>';}?>
 
-<a style="margin-top: -52px !important;margin-left: 95px;" href="medicine_update.php?update=true&&id=<?php echo $get['id']?>" class="btn btn-info btn-sm " ><i class="fas fa-edit"></i> Edit</a>
+<a href="medicine_update.php?update=true&&id=<?php echo $get['id']?>" title="Edit" class="btn btn-info btn-sm " ><i class="fas fa-edit"></i></a>
 
-<a style="margin-top: -93px !important;margin-left: 158px;" href="?delete=true&&id=<?php echo $get['id']?>" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure to delete')"><i class="fas fa-trash"></i> Delete</a>
+<a href="?delete=true&&id=<?php echo $get['id']?>" class="btn btn-danger btn-sm " title="Delete" onclick="return confirm('Are you sure to delete')"><i class="fas fa-trash"></i></a>
 </td>
 </tr>
 <?php }?>

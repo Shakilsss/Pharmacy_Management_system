@@ -17,7 +17,7 @@ class Medicine extends Connection{
 		}
 		else{
 		@$status=$_POST['status'];
-$sql="insert into medicines (names,code,category_id,unit_id,manufacturer,strength,shelf,expired_date,quantity,description,manufacturer_price,price,status) values ('$names','$code','$category_id','$unit_id','$manufacturer','$strength','$shelf','$expired_date','$quantity','$description','$manufacturer_price','$price','$status')";	
+$sql="insert into medicines (names,category_id,unit_id,manufacturer,strength,shelf,expired_date,quantity,description,manufacturer_price,price,status) values ('$names','$category_id','$unit_id','$manufacturer','$strength','$shelf','$expired_date','$quantity','$description','$manufacturer_price','$price','$status')";	
 		$result=mysqli_query($this->conn,$sql);
 		if($result){
       	echo '<script>alert("Medicine Added Successfully")</script>';
@@ -59,7 +59,7 @@ $sql="insert into medicines (names,code,category_id,unit_id,manufacturer,strengt
 	public function update()
 		{
 		extract($_POST);
-		$sql="update medicines set names='$name',code='$code',category_id='$category_id',unit_id='$unit_id',manufacturer='$manufacturer',strength='$strength',shelf='$shelf',expired_date='$expired_date',quantity='$quantity',description='$description',manufacturer_price='$manufacturer_price',price='$price',status='$status' where id='$id'";
+		$sql="update medicines set names='$name',category_id='$category_id',unit_id='$unit_id',manufacturer='$manufacturer',strength='$strength',shelf='$shelf',expired_date='$expired_date',quantity='$quantity',description='$description',manufacturer_price='$manufacturer_price',price='$price',status='$status' where id='$id'";
 		$result=mysqli_query($this->conn,$sql);
 		if($result)
 		{

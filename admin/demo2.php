@@ -5,9 +5,15 @@
 extract($_GET);
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql="  SELECT customer_orders.* ,orders.customer_id,orders.medicine_name,orders.qty,orders.price,orders.total
+$sql="  SELECT
+  customer_orders.*,
+  orders.*,
+  medicines.*,medicines.names as medicine_name
 FROM customer_orders
-INNER JOIN orders ON customer_orders.id= orders.customer_id 
+JOIN orders
+  ON customer_orders.id = orders.customer_id
+JOIN medicines
+  ON medicines.id = orders.medicine_id
 where orders.customer_id IN($id)";
 $result=mysqli_query($conn, $sql);
 // $row=mysqli_fetch_assoc($result)
@@ -51,7 +57,8 @@ $gets=mysqli_fetch_assoc($results);
     <div class="col-4 invoice" style="margin-bottom: 10px;margin-top: 10px ">
     	<table border="1" class="table table-bordered table-sm" style=" border-collapse: collapse;" >
     		<tr><td> Invoice No </td><td> #INVOC-<?php echo $gets['invoice_id']?></td></tr>
-    		<tr><td> Date  </td><td><?php echo $gets['date']?></td></tr>
+        <tr><td> Date  </td><td><?php echo $gets['date']?></td></tr>
+    		<tr><td colspan="2" align="center">Office Copy </td></tr>
     	</table>
 
     </div>
@@ -123,7 +130,7 @@ $getss=mysqli_fetch_assoc($get);
      <span style="float: right;">Customer Signature</span>
     </div>
   </div>
-<p><center>(Office Copy's)</center></p>
+
 
 
 

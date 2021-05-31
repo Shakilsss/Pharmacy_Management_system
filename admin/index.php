@@ -27,6 +27,21 @@ $medicine=mysqli_query($conn,$sql);
 $sql= "select* from medicines where expired_date < NOW()";
 $expired_date=mysqli_query($conn,$sql);
 
+$sql= "select* from medicines where expired_date < NOW()";
+$expired_date=mysqli_query($conn,$sql);
+
+$today= "select* from customer_orders where cast(date as Date) = cast(NOW() as Date)";
+$totalsss=mysqli_query($conn,$today);
+
+$todays= "SELECT  SUM(orders.total) as total FROM customer_orders INNER JOIN orders ON customer_orders.id= orders.customer_id
+where cast(customer_orders.date as Date) = cast(NOW() as Date) GROUP by customer_orders.id=orders.customer_id";
+$totalss=mysqli_query($conn,$todays);
+$getsss=mysqli_fetch_assoc($totalss);
+
+$importMedicins="SELECT  SUM(quantity * price) as totttal FROM medicines 
+where cast(medicines.time as Date) = cast(NOW() as Date) ";
+$getImport=mysqli_query($conn,$importMedicins);
+$geet=mysqli_fetch_assoc($getImport);
 ?>
 
 

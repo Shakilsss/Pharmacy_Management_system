@@ -1,9 +1,7 @@
 <form action="" method="POST">
   <!-- <?php $i?> -->
     <div class="row mb-3">
-      <div class="col-lg-5">
-       <label >Medicine Code</label> <input type="text" class="form-control" id="code" placeholder="Code" name="code" value="<?php echo @$max_public_id[0];?>" >
-      </div>
+
       <div class="col-lg-5">
         <label for="uname">Medicine Name</label>
         <input type="text" class="form-control" id="name" placeholder="Medicine Name" name="names" required>

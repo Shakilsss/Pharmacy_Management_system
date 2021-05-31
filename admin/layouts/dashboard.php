@@ -1,12 +1,6 @@
 <div class="row" style="margin-top: 20px !important">
                     <!-- Column -->
-
-    
-
-
 <style type="text/css">
-
-
 
 .card.statistic-box  .card-icon {
     border-radius: 3px;
@@ -18,10 +12,6 @@
     height: 50px;
     width: 50px;
 }
-
-
-
-
 .card-header:first-child {
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 }
@@ -41,8 +31,6 @@
 }
 
 </style>
-
-
 <br>
 <div class="col-sm-3 col-md-3  col-lg-3">
 <div class="card card-stats statistic-box mb-4 card-hover  shadow bg-info rounded-lg">
@@ -139,19 +127,11 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="bg-dark p-10 text-white text-center">
-                                                    <i class="fa fa-arrow-right mb-1 font-16"></i>
-                                                    <h5 class="mb-0 mt-1">2540</h5>
-                                                    <small class="font-light">Export Medicine</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-arrow-left mb-1 font-16"></i>
-                                                    <h5 class="mb-0 mt-1">120</h5>
-                                                    <small class="font-light">Import Medicine</small>
+                                                    <h5 class="mb-0 mt-1"><?php echo mysqli_num_rows($totalsss)?></h5>
+                                                    <small class="font-light">Total Customer's</small>
                                                 </div>
                                             </div>
-                                 
                                         </div>
                                     </div>
 
@@ -167,15 +147,40 @@
 </tr>
 <tr >
 <th>Total Sales</th>
-<td >1720.57</td>
+<td>
+    <?php   
+    if( isset ($getsss['total'])==NULL)
+    { 
+        echo '0'; 
+
+}
+else
+ {
+    echo $getsss["total"] ;
+}
+
+
+?></td>
 </tr>
-<tr>
+<!-- <tr>
 <th >Total Export Price</th>
 <td >52102.50</td>
-</tr>
+</tr> -->
 <tr>
 <th >Total Import Price</th>
-<td >1341.32</td>
+<td >    <?php   
+    if( isset ($geet['totttal'])==NULL)
+    { 
+        echo '0'; 
+
+}
+else
+ {
+    echo $geet["totttal"] ;
+}
+
+
+?></td>
 </tr>
 </tbody>
 

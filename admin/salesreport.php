@@ -1,10 +1,23 @@
+<?php
+session_start();
+include 'vendor/autoload.php';
+use App\classes\Logout;
 
+if($_SESSION['id'] == NULL){
+    header('Location:/project/admin/pages/login.php');
+}
+if(isset($_GET['logout']))
+{
+    $logout= new Logout();
+    $logout->logout();
+}
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head><title>Admin Dashboard</title>
     <?php include'includes/head.php';?> 
 </head>
-<body> 
+<body > 
 <?php include 'includes/loader.php';?>  
     <div id="main-wrapper">    
 <?php include 'includes/header.php'; ?>    
@@ -27,38 +40,45 @@
 <div class="container-fluid">
 
 
-<div class="row">
-    <div class="col-12">            
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Manufacturer List</h5>
-                    <div class="table-responsive">
-                        <table id="zero_config" class="table table-striped table-bordered table-sm">
-                           
-                     <thead>
-                                    <?php $i=1;?>
-                                          <tr>
-                                              <th>Sl</th>
-                                              <th>Name</th>
-                                              <th>Email</th>
-                                              <th>Phone</th>
-                                              <th>Address</th>
-                                              <th>City</th>
-                                              <th>Zip</th>
-                                              <th>Action</th>
-                                          </tr>
-                              </thead>
-                        <tbody>
-                        
-                      </tbody>
-                              </table>
-                        </div>
-                  </div>
-            </div>
-      </div>
-</div>
-            
 
+<div class="dropdown">
+  <button type="button" class="btn border-info dropdown-toggle" data-toggle="dropdown">
+    Check Report For
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" id="today" href="#todays">Today's</a>
+    <a class="dropdown-item" id="7day" href="#7days">Last 7 Day's</a>
+    <a class="dropdown-item" id="month" href="#thisMonth">This Month</a>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>            
+<script type="text/javascript">
+  $("#today").click(function(){
+  $.ajax({url: "today.php", success: function(result){
+    $("#div1").html(result);
+  }});
+});
+
+    $("#7day").click(function(){
+  $.ajax({url: "7day.php", success: function(result){
+    $("#div1").html(result);
+  }});
+});
+
+      $("#month").click(function(){
+  $.ajax({url: "month.php", success: function(result){
+    $("#div1").html(result);
+  }});
+});
+
+      
+
+
+</script>
+
+<div id="div1">
+  
+</div>
 
 
     </div><?php include 'includes/footer.php';?> </div></div>

@@ -41,7 +41,7 @@ for($i = 0; $i<count($_POST['medicine_name']); $i++)
 $sql="INSERT INTO orders  
 SET   
 customer_id = '{$id}',  
-medicine_id = '{$_POST['medicine_id'][$i]}',  
+medicine_name = '{$_POST['medicine_name'][$i]}',  
 qty = '{$_POST['qty'][$i]}',  
 price = '{$_POST['price'][$i]}',  
 total = '{$_POST['total'][$i]}'";  
@@ -51,31 +51,14 @@ $done=mysqli_query($conn,$sql);
 if($done){
 
 extract($_GET);
-// extract($_POST);
-
-$update=" UPDATE medicines  INNER JOIN  orders  ON medicines.id = orders.medicine_id  
-          SET quantity = medicines.quantity - orders.qty 
-          where medicines.id=orders.medicine_id";
-$a=mysqli_query($conn,$update);
-
-echo "<pre>";
-echo  print_r($);
-echo "</pre>";
-die();
-
 $conn=mysqli_connect('localhost','root','','pharma');
 
-$sql=" SELECT
-  customer_orders.*,
-  orders.*,
-  medicines.*,medicines.names as medicine_name
+$sql="  SELECT customer_orders.* ,orders.customer_id,orders.medicine_name,orders.qty,orders.price,orders.total
 FROM customer_orders
-JOIN orders
-  ON customer_orders.id = orders.customer_id
-JOIN medicines
-  ON medicines.id = orders.medicine_id
+INNER JOIN orders ON customer_orders.id= orders.customer_id 
 where orders.customer_id IN($id)";
 $result=mysqli_query($conn, $sql);
+// $row=mysqli_fetch_assoc($result)
 
 $sqls="  SELECT customer_orders.* ,orders.customer_id,
 FROM customer_orders
@@ -83,8 +66,9 @@ INNER JOIN orders ON customers.id= orders.customer_id
 where orders.customer_id IN($id)";
 $results=mysqli_query($conn, $sql);
 $gets=mysqli_fetch_assoc($results);
+        // $id=mysqli_insert_id($_POST['customer_id']); 
 
-    echo '<script>alert("Order Successfully")</script>';
+     echo '<script>alert("Order Successfully")</script>';
     echo '<script>location.replace("/project/admin/orderlist.php?id='.$id.'")</script>';
 }
 
@@ -92,6 +76,10 @@ $gets=mysqli_fetch_assoc($results);
 
 }
 ?>
+
+
+
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -159,13 +147,10 @@ $gets=mysqli_fetch_assoc($results);
                                     var id = response[0]['id'];
                                     var quantity = response[0]['quantity'];
                                     var expired_date = response[0]['expired_date'];
-                                    var shelf = response[0]['shelf'];
                                     var price = response[0]['price'];
 
-                                    document.getElementById('id_'+index).value = id;
                                     document.getElementById('quantity_'+index).value = quantity;
                                     document.getElementById('expired_date_'+index).value = expired_date;
-                                    document.getElementById('shelf_'+index).value = shelf;
                                     document.getElementById('price_'+index).value = price;
                                     
                                 }
@@ -190,16 +175,14 @@ $gets=mysqli_fetch_assoc($results);
 
                 // Create row with input elements
                 var html = "<tr class='tr_input'>"
-+"<td><input type='text' class='medicine w-100' name='medicine_name[]' id='medicine_"+index+"'></td>"
-+"<input type='hidden' class='id w-100' name='medicine_id[]' id='id_"+index+"'>"
-+"<td><input type='text' readonly name='quantity[]' class='quantity w-100' id='quantity_"+index+"' ></td>"
-+"<td><input type='date' readonly name='expired_date[]' class='expired_date w-100' id='expired_date_"+index+"' ></td>"
-+"<td><input type='number' readonly name='shelf[]' class='shelf w-100' id='shelf_"+index+"' ></td>"
-+"<td><input type='text' step='0' name='qty[]' min='0'  class='qty w-100' id='qty_"+index+"' ></td>"
-+"<td><input type='text' step='0' name='price[]' min='0'  class='price w-100' id='price_"+index+"' ></td>"
-+"<td><input type='text' name='total[]' placeholder='0' readonly class='total w-100' id='total_"+index+"' ></td>"
-+"<td><button class='btnDelete btn-danger btn btn-sm'><i class='fas fa-trash'></i></button></td>"
-+"</tr>";
+                +"<td><input type='text' class='medicine' name='medicine_name[]' id='medicine_"+index+"'>"
+                +"</td><td><input type='text' readonly name='quantity[]' class='quantity' id='quantity_"+index+"' ></td>"
+                +"<td><input type='date' readonly name='expired_date[]' class='expired_date' id='expired_date_"+index+"' ></td>"
+                +"<td><input type='text' step='0' name='qty[]' min='0'  class='qty' id='qty_"+index+"' ></td>"
+                +"<td><input type='text' step='0' name='price[]' min='0'  class='price' id='price_"+index+"' ></td>"
+                +"<td><input type='text' name='total[]' placeholder='0' readonly class='total' id='total_"+index+"' ></td>"
+                +"<td><button class='btnDelete btn-danger btn btn-sm'><i class='fas fa-trash'></i></button></td>"
+                +"</tr>";
                 // Append data
                 $('tbody').append(html);
 
@@ -274,6 +257,10 @@ $gets=mysqli_fetch_assoc($results);
                 </div>
             </div>
 <div class="container-fluid">
+
+
+
+    
 <form accept="" method="POST">  
 <div class="row">
       <div class="col-lg-4">
@@ -282,8 +269,10 @@ $gets=mysqli_fetch_assoc($results);
           <input type='text'  id='user_id' class='form-control ' placeholder='Customer Name/Phone Number' onkeyup="GetDetail(this.value)" value="">
         </div>
       </div>
+
       <div class="col-lg-4">
         <div class="form-group">
+
           <input type='text'  id='invoice_id' class='form-control ' placeholder='Invoice No.'
           value="<?php  echo @$max_public_id[0]+1; ?>" name="invoice_id">
         </div>
@@ -294,7 +283,7 @@ $gets=mysqli_fetch_assoc($results);
  <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Customer Name</label> -->
-          <input type="text" name="name" id="name" class="form-control   " required="required" placeholder='Customer Name' value="">
+          <input type="text" name="name" id="name" class="form-control   " placeholder='Customer Name' value="">
           <input type="hidden" name="id" id="id" class="form-control   " placeholder='id' value="">
         </div>
       </div>
@@ -303,7 +292,7 @@ $gets=mysqli_fetch_assoc($results);
       <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Phone</label> -->
-          <input type="text" name="phone" id="phone" class="form-control  " required="required" placeholder='Phone Number' value="">
+          <input type="text" name="phone" id="phone" class="form-control  " placeholder='Phone Number' value="">
         </div>
       </div>
      
@@ -313,68 +302,89 @@ $gets=mysqli_fetch_assoc($results);
       <div class="col-lg-4">
         <div class="form-group">
           <!-- <label>Address</label> -->
-          <input type="text" name="address" required="required" id="address" class=" form-control " placeholder='Address' value="">
+          <input type="text" name="address" id="address" class=" form-control " placeholder='Address' value="">
         </div>
       </div>
       <div class="col-lg-3">
         <div class="form-group">
           <!-- <label>City</label> -->
-          <input type="text" name="city" id="city" class="form-control   " required="required"  placeholder='City' value="">
+          <input type="text" name="city" id="city" class="form-control   "  placeholder='City' value="">
         </div>
       </div>
 
        <div class="col-lg-1">
         <div class="form-group">
           <!-- <label>Zip</label> -->
-          <input type="text" name="zip" id="zip" class="form-control" required="required" placeholder='zip' value="">
+          <input type="text" name="zip" id="zip" class="form-control   " placeholder='zip' value="">
         </div>
       </div>
     </div>
-<table id="tab_logic"class="table-striped table-bordered table table-responsive table-sm col-12" >
-  <thead>
-    <tr>
+
+
+
+
+
+        
+        <table id="tab_logic" class="table-striped table-bordered" >
+            <thead>
+            <tr>
                 <th>Medicine Name</th>
                 <th>Available</th>
-                <th>Expired</th>
-                <th>Shelf</th>
+                <th>Expired Date</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total</th>
                 <th>Action</th>
-    </tr>
-  </thead>
-<tbody>
-<tr class='tr_input'>
-<td><input type='text' class='medicine w-100' name="medicine_name[]" id='medicine_1' required="required"></td>
-<input type='hidden' class='id w-100' name="medicine_id[]" id='id_1' >
-<td><input type='number' readonly="readonly" name="quantity[]" class='quantity w-100' id='quantity_1' ></td>
-<td><input type='date' readonly="readonly" name="expired_date[]" class='expired_date w-100' id='expired_date_1' ></td>
-<td><input type='number' readonly="readonly" name="shelf[]" class='shelf w-100' id='shelf_1' ></td>
-<td><input type='number'  class='qty w-100' name="qty[]" required="required" step="0" min="0" id='qty_1' ></td>
-<td><input type='number'  class='price w-100' name="price[]" required="required" step="0.00" min="0" id='price_1' ></td>
-<td><input type='number' placeholder='0' name="total[]" readonly class='total w-100' id='total_1' ></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class='tr_input'>
+                <td><input type='text' class='medicine' name="medicine_name[]" id='medicine_1'></td>
+                <td><input type='number' readonly="readonly" name="quantity[]" class='quantity   ' id='quantity_1' ></td>
+                <td><input type='date' readonly="readonly" name="expired_date[]" class='expired_date' id='expired_date_1' ></td>
+                <td><input type='number'  class='qty' name="qty[]" step="0" min="0" id='qty_1' ></td>
+                <td><input type='number'  class='price' name="price[]" step="0.00" min="0" id='price_1' ></td>
+                <td><input type='number' placeholder='0' name="total[]" readonly class='total' id='total_1' ></td>
+             <td></td>
+            </tr>
+            </tbody>
+        </table>
         
-<br>
-<input type='submit' value='Submit' name="btn" class="btn btn-sm btn-success" >
-<button type="reset" value="Reset All"  class="btn btn-sm btn-warning"><i class="fas fa-redo-alt"></i>
-Reset All</button>
-<br>
+        <br>
+        <input type='submit' value='Submit' name="btn" class="btn btn-sm btn-success" >
+        <button type="reset" value="Reset All"  class="btn btn-sm btn-warning"><i class="fas fa-redo-alt"></i> Reset All</button>
+    
+        <br>
         
-</form><br><input type='button' value='+ Add' class="btn btn-sm btn-info" id='addmore'>
+</form>     
+        
+        <br>
+        <input type='button' value='+ Add' class="btn btn-sm btn-info" id='addmore'>
+ 
 
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>     
-
-<script>
+      <script>
 $(document).ready(function(){
     $('#tab_logic tbody').on('keyup change',function(){
         calc();
     });
+    
+
 });
 
 function calc()
@@ -382,22 +392,40 @@ function calc()
     $('#tab_logic tbody tr').each(function(i, element) {
         var html = $(this).html();
         if(html!='')
-        {   
-           
+        {
             var qty = $(this).find('.qty').val();
             var price = $(this).find('.price').val();
             $(this).find('.total').val(qty*price);
             
     
         }
-
     });
 }
-</script>
+      </script>
+
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
 <?php include 'includes/footer.php';?> 
+
 </div>
+
 </div>
+
 <?php include 'includes/js.php'?>
     <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="jquery-ui.min.js" type="text/javascript"></script>
